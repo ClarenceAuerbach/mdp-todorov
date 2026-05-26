@@ -30,12 +30,11 @@ def z_iteration(G, P, tol=1e-15, n_iter=100):
     z = np.ones(P.shape[0])
     for k in range(n_iter):
         z_new = M @ z  # O(n) since M is sparse
-        z_new /= np.linalg.norm(z_new)
+        z_new /= np.linalg.norm(z_new) # unnessary according to the article
 
         if np.linalg.norm(z_new - z) / (np.linalg.norm(z) + 1e-16) < tol:
            print(f"Converged at iteration {k}")
            break
 
         z = z_new
-        print(k)
     return z

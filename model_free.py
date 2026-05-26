@@ -58,8 +58,9 @@ class ZLearning:
         return -np.log(np.clip(self.z_hat, 1e-12, None))
 
 class QLearning:
-    def __init__(self, n_states, env, gamma=0.95):
-        self.n_states, self.env, self.gamma = n_states, env, gamma
+
+    def __init__(self, n_states, env, gamma=1.0):
+        self.n_states, self.env, self.gamma = n_states, env, gamma # gamma=1.0 for undiscounted problems
         self.Q = defaultdict(lambda: defaultdict(float))
         self.lr = lambda k: 10.0 / (10.0 + k)
         
